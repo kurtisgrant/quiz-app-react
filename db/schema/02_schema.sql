@@ -17,7 +17,7 @@ CREATE TABLE quizzes (
   owner_id INTEGER REFERENCES quizzers(id) ON DELETE CASCADE,
   title VARCHAR(255) NOT NULL,
   description TEXT,
-  url VARCHAR(255) NOT NULL,
+  url_identifier VARCHAR(255) NOT NULL,
   is_public BOOLEAN NOT NULL DEFAULT TRUE
 );
 
@@ -28,7 +28,7 @@ CREATE TABLE questions (
   question TEXT NOT NULL
 );
 
-CREATE TABLE quiz_responsess (
+CREATE TABLE quiz_responses (
   id SERIAL PRIMARY KEY NOT NULL,
   tester_id INTEGER REFERENCES quizzers(id) ON DELETE CASCADE,
   quiz_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
@@ -39,7 +39,7 @@ CREATE TABLE question_options (
   id SERIAL PRIMARY KEY NOT NULL,
   question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE,
   answer VARCHAR(255) NOT NULL,
-  is_correct BOOLEAN NOT NULL
+  is_correct BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE question_responses (
