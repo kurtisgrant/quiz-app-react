@@ -17,7 +17,7 @@ CREATE TABLE quizzes (
   owner_id INTEGER REFERENCES quizzers(id) ON DELETE CASCADE,
   title VARCHAR(255) NOT NULL,
   description TEXT,
-  url_identifier VARCHAR(255) NOT NULL,
+  quiz_identifier VARCHAR(255) NOT NULL,
   is_public BOOLEAN NOT NULL DEFAULT TRUE
 );
 
