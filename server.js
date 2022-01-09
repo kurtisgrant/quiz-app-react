@@ -49,7 +49,11 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+
+  // TODO: set user to logged in user or undefined
+  const user = undefined;
+
+  res.render("index", { user: user });
 });
 
 app.listen(PORT, () => {
