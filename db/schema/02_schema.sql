@@ -42,10 +42,10 @@ CREATE TABLE question_options (
   is_correct BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-CREATE question_responses (
+CREATE TABLE question_responses (
   id SERIAL PRIMARY KEY NOT NULL,
   quiz_response_id INTEGER REFERENCES quiz_responses(id) ON DELETE CASCADE,
-  selected_option_id INTEGER REFERENCES question_options(id) ON DELETE CASCADE,
+  selected_option_id INTEGER REFERENCES question_options(id) ON DELETE CASCADE
 );
 
 
