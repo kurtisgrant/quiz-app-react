@@ -101,6 +101,42 @@ const getQuizAttempt = function(db, quizAttemptId) {
     });
 };
 
+//add quiz to quiz database
+const addQuiz = function(db, something) {
+  return db
+    .query(`INSERT INTO quizzes (owner_id, title, description, quiz_identifier, is_public)
+            VALUES ();
+            INSERT INTO questions (owner_id, quiz_id, question)
+            VALUES (), (), etc;
+            INSERT INTO question_options (question_id, answer, is_correct)
+            VALUES (), (), (), etc;`,
+            [something])
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
+//submit quiz and add info into database tables
+const submitQuiz = function(db, something) {
+  return db
+    .query(`INSERT INTO quizzes (owner_id, title, description, quiz_identifier, is_public)
+            VALUES ();
+            INSERT INTO questions (owner_id, quiz_id, question)
+            VALUES (), (), etc;
+            INSERT INTO question_options (question_id, answer, is_correct)
+            VALUES (), (), (), etc;`,
+            [something])
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
 module.exports = {
   getUsers,
   getUserWithId,
@@ -108,5 +144,7 @@ module.exports = {
   getUserQuizzes,
   getQuiz,
   getAllQuizAttempts,
-  getQuizAttempt
+  getQuizAttempt,
+  addQuiz,
+  submitQuiz
 }
