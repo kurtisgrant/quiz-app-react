@@ -70,10 +70,43 @@ const getQuiz = function(db, quizIdentifier) {
     });
 };
 
+//get all quiz attempts for a specific user
+const getAllQuizAttempts = function (db, testerId) {
+  return db
+    .query(`SELECT quiz_attempts.*
+            FROM quiz_attempts
+            WHERE tester_id = $1;`,
+            [testerId])
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+//get a particular quiz attempt for a specific user
+const getQuizAttempt = function(db, quizAttemptId) {
+  return db
+    .query(`SELECT question_responses.selected_option_id as choice, question_options.answer
+            FROM question_responses
+            JOIN question_options ON question_options.id = selected_option_id
+            WHERE quiz_attempt_id = $1;`,
+            [quizAttemptId])
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
 module.exports = {
   getUsers,
   getUserWithId,
   getHomepage,
   getUserQuizzes,
-  getQuiz
+  getQuiz,
+  getAllQuizAttempts,
+  getQuizAttempt
 }
