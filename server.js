@@ -50,7 +50,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 app.get("/", (req, res) => {
 
-  const user = undefined;
+  const user = { name: 'Sara' };
   const quizzes = [
     { quiz_identifier: 'biK50vH', title: 'Capital Cities of North America', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi magnam sit omnis repellat, sunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '67%', questions: 25 },
     { quiz_identifier: 'hv38vnj', title: 'Harry Potter Quiz', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Gesunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '83%', questions: 12 },
