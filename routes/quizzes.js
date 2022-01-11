@@ -29,6 +29,29 @@ module.exports = (db) => {
     res.render("/new", bleh)
   });
 
+  router.get("/:quiz_identifier", (req, res) => {
+    // node skeleton way of doing a database query - directly in router.get
+    // db.query(`SELECT quizzes.title, quizzes.description, questions.question, question_options.answer
+    //           FROM quizzes
+    //           JOIN questions ON quizzes.id = quiz_id
+    //           JOIN question_options ON questions.id = question_id
+    //           WHERE quiz_identifier = $1;`,
+    //           [req.params.quiz_identifier])
+    getQuiz(db, req.params.quiz_identifier)
+      .then(quiz => {
+        if (quiz.length > 0) {
+          res.json({ quiz });
+        } else {
+          res.send("There is no quiz associated with this url. Please make sure you've typed in the address correctly.");
+        }
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
 
   return router;
 };
