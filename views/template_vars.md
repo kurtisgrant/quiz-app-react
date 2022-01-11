@@ -26,4 +26,18 @@ Quiz Results (GET "/attempts"):
   ] 
 }
 
+My Quizzes (GET "/quizzes"):
+{ 
+  user: { name }, 
+  quizzes: [ 
+    { 
+      quiz_identifier(str), 
+      title(str), 
+      description(str), 
+      attempts(number), 
+      avg_score(str, format: '60%') 
+    } 
+  ] 
+}
 
+Quiz (GET "/quizzes/:quiz_identifier"):
