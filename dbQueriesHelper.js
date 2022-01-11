@@ -24,7 +24,22 @@ const getUserWithId = function(db, id) {
     });
 };
 
+//get homepage data for logged in users
+const getHomepage = function(db) {
+  return db
+    .query(`SELECT *
+            FROM quizzes
+            WHERE is_public = TRUE`)
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
 module.exports = {
   getUsers,
-  getUserWithId
+  getUserWithId,
+  getHomepage
 }
