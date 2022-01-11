@@ -33,6 +33,13 @@ app.use(
 
 app.use(express.static("public"));
 
+// session
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: ['quizapp'],
+//   maxAge: 24 * 60 * 60 * 1000
+// }));
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
@@ -48,9 +55,28 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+// If the user is not logged in then redirect the user to login page, else to homepage
 app.get("/", (req, res) => {
+  // const user = req.session.user_id;
+  // if (user) {
+  //   return res.redirect("/");
+  // } else {
+  //   res.render("login", {users: user});
+  // }
   res.render("index");
 });
+
+// 
+app.get("/login", (req,res) => {
+  const user = req.session.user_id;
+  if (user) {
+    return res.redirect("/");
+  } else {
+    return res.render("login", {users: user});
+  }
+})
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
