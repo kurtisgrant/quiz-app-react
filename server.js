@@ -59,22 +59,17 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 app.get("/", (req, res) => {
 
-<<<<<<< HEAD
-  const user = { name: 'Sara' };
+  // Log for testing that userID & user data retrieved successfully
+  console.log('userID from session storage: ', req.session.userID);
+  console.log('user data from auth middleware: ', req.user);
+
   const quizzes = [
     { quiz_identifier: 'biK50vH', title: 'Capital Cities of North America', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi magnam sit omnis repellat, sunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '67%', questions: 25 },
     { quiz_identifier: 'hv38vnj', title: 'Harry Potter Quiz', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Gesunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '83%', questions: 12 },
     { quiz_identifier: 'fibajio', title: 'Parts of a Cell', description: 'Lorem ipsum dolor sit amet consectetur. Nisi magnam sit omnis repellat, sunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '72%', questions: 17 },
   ];
 
-  res.render("index", { user: user, quizzes: quizzes });
-=======
-  // Log for testing that userID & user data retrieved successfully
-  console.log('userID from session storage: ', req.session.userID);
-  console.log('user data from auth middleware: ', req.user);
-
-  res.render("index");
->>>>>>> master
+  res.render("index", { user: req.user, quizzes: quizzes });
 });
 
 // Login route for testing auth middleware
