@@ -25,6 +25,9 @@ module.exports = (db) => {
       });
   });
 
+  router.get("/new", (req, res) => {
+    res.render("/new", bleh)
+  });
 
 
   return router;
