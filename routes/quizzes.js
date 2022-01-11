@@ -52,6 +52,10 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/", (req, res) => {
+    const quizIdentifier = generateQuizIdentifier();
+    addQuiz()
+  });
 
   return router;
 };
