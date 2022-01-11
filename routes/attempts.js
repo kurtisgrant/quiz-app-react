@@ -26,6 +26,17 @@ module.exports = (db) => {
       });
   });
 
+  router.get("/:id", (req, res) => {
+    getQuizAttempt(db, req.params.id)
+      .then((attempt) => {
+        res.json({attempt});
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+        });
+  });
 
 
   return router;
