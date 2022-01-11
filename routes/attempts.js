@@ -38,6 +38,9 @@ module.exports = (db) => {
         });
   });
 
+  router.post("/", (req, res) => {
+    submitQuiz
+  });
 
   return router;
 };
