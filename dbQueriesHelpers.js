@@ -3,7 +3,7 @@
 //just test to get all users
 const getUsers = function(db) {
   return db
-    .query(`SELECT * FROM users`)
+    .query(`SELECT * FROM users;`)
     .then((result) => {
       return result.rows;
     })
@@ -91,6 +91,7 @@ const getQuizAttempt = function(db, quizAttemptId) {
     .query(`SELECT question_responses.selected_option_id as choice, question_options.answer
             FROM question_responses
             JOIN question_options ON question_options.id = selected_option_id
+            JOIN quiz_attempts ON quiz_attempts.id = quiz_attempt_id
             WHERE quiz_attempt_id = $1;`,
             [quizAttemptId])
     .then((result) => {
@@ -103,14 +104,15 @@ const getQuizAttempt = function(db, quizAttemptId) {
 
 //add quiz to quiz database
 const addQuiz = function(db, something) {
+  let queryParams = [something]
+  let queryString = `INSERT INTO quizzes (owner_id, title, description, quiz_identifier, is_public)
+                     VALUES ();
+                     INSERT INTO questions (owner_id, quiz_id, question)
+                     VALUES (), (), etc;
+                     INSERT INTO question_options (question_id, answer, is_correct)
+                     VALUES (), (), (), etc;`
   return db
-    .query(`INSERT INTO quizzes (owner_id, title, description, quiz_identifier, is_public)
-            VALUES ();
-            INSERT INTO questions (owner_id, quiz_id, question)
-            VALUES (), (), etc;
-            INSERT INTO question_options (question_id, answer, is_correct)
-            VALUES (), (), (), etc;`,
-            [something])
+    .query(queryString, queryParams)
     .then((result) => {
       return result.rows;
     })
@@ -121,14 +123,15 @@ const addQuiz = function(db, something) {
 
 //submit quiz and add info into database tables
 const submitQuiz = function(db, something) {
+  let queryParams = [something]
+  let queryString = `INSERT INTO quizzes (owner_id, title, description, quiz_identifier, is_public)
+                     VALUES ();
+                     INSERT INTO questions (owner_id, quiz_id, question)
+                     VALUES (), (), etc;
+                     INSERT INTO question_options (question_id, answer, is_correct)
+                     VALUES (), (), (), etc;`
   return db
-    .query(`INSERT INTO quizzes (owner_id, title, description, quiz_identifier, is_public)
-            VALUES ();
-            INSERT INTO questions (owner_id, quiz_id, question)
-            VALUES (), (), etc;
-            INSERT INTO question_options (question_id, answer, is_correct)
-            VALUES (), (), (), etc;`,
-            [something])
+    .query(queryString, queryParams)
     .then((result) => {
       return result.rows;
     })
@@ -136,6 +139,17 @@ const submitQuiz = function(db, something) {
       console.log(err.message);
     });
 }
+
+// generate random string to use as quiz_identifier for new quizzes created
+const generateQuizIdentifier = () => {
+  let random = "";
+  let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (let i = 0; i < 6; i++) {
+    random += characters[Math.floor(Math.random() * characters.length)];
+  }
+  return random;
+};
 
 module.exports = {
   getUsers,
@@ -146,5 +160,6 @@ module.exports = {
   getAllQuizAttempts,
   getQuizAttempt,
   addQuiz,
-  submitQuiz
+  submitQuiz,
+  generateQuizIdentifier
 }
