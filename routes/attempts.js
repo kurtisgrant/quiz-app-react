@@ -51,7 +51,7 @@ module.exports = (db) => {
     const user = req.user;
 
     if (req.user) {
-      const attempt = [{
+      const attempt = {
         quiz_id: 20,
         quiz_title: "Pizza Quiz",
         quiz_description: "A quiz about the best pizzas",
@@ -62,10 +62,10 @@ module.exports = (db) => {
           {question_id: 12, question_text: "Which pizza is this?", options: [{option_id: 36, option_text: "Bad pizza!"}, {option_id: 37, option_text: "Smile pizza!"}, {option_id: 38, option_text: "Bye bye pizza!"}], correct_option_id: 36, selected_option_id: 36}
         ],
         score: "67%"
-      }];
+      };
 
-      const templateVars = { user: user, attempts: attempt };
-      res.render("attempts", templateVars);
+      const templateVars = { user, attempt };
+      res.render("attempt", templateVars);
     } else {
       res.send("Please login to see your quiz attempts!");
     }
