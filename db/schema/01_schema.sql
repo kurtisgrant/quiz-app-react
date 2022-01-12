@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS quizzes CASCADE;
 DROP TABLE IF EXISTS questions CASCADE;
-DROP TABLE IF EXISTS quiz_responses CASCADE;
+DROP TABLE IF EXISTS quiz_attempts CASCADE;
 DROP TABLE IF EXISTS question_options CASCADE;
 DROP TABLE IF EXISTS question_responses CASCADE;
 
@@ -28,7 +28,7 @@ CREATE TABLE questions (
   question TEXT NOT NULL
 );
 
-CREATE TABLE quiz_responses (
+CREATE TABLE quiz_attempts (
   id SERIAL PRIMARY KEY NOT NULL,
   tester_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   quiz_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
@@ -44,7 +44,7 @@ CREATE TABLE question_options (
 
 CREATE TABLE question_responses (
   id SERIAL PRIMARY KEY NOT NULL,
-  quiz_response_id INTEGER REFERENCES quiz_responses(id) ON DELETE CASCADE,
+  quiz_attempt_id INTEGER REFERENCES quiz_attempts(id) ON DELETE CASCADE,
   selected_option_id INTEGER REFERENCES question_options(id) ON DELETE CASCADE
 );
 
