@@ -6,8 +6,8 @@
  */
 
 const express = require('express');
-const { getUsers, getUserWithId } = require('../dbQueriesHelpers');
-const router  = express.Router();
+const { getUsers, getUserWithId } = require('../lib/dbQueriesHelpers');
+const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -24,15 +24,15 @@ module.exports = (db) => {
 
   router.get("/:id", (req, res) => {
     getUserWithId(db, req.params.id)
-    .then(data => {
-      const user = data;
-      res.json({ user });
-    })
-    .catch(err => {
-      res
-      .status(500)
-      .json({ error: err.message });
-    });
+      .then(data => {
+        const user = data;
+        res.json({ user });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
   return router;
