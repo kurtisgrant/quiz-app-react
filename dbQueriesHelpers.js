@@ -73,11 +73,16 @@ const getQuiz = function(db, quizIdentifier) {
 //get all quiz attempts for a specific user
 const getAllQuizAttempts = function (db, testerId) {
   return db
-    .query(`SELECT quiz_attempts.*
+    .query(`SELECT DISTINCT quiz_attempts.*, quizzes.title as quiz_title, quizzes.description as quiz_description
             FROM quiz_attempts
+            JOIN quizzes ON quizzes.id = quiz_attempts.quiz_id
+            JOIN questions ON quizzes.id = questions.quiz_id
+            JOIN question_options ON questions.id = question_id
+            JOIN question_responses ON question_options.id = selected_option_id
             WHERE tester_id = $1;`,
             [testerId])
     .then((result) => {
+      console.log(result.rows);
       return result.rows;
     })
     .catch((err) => {
@@ -88,13 +93,17 @@ const getAllQuizAttempts = function (db, testerId) {
 //get a particular quiz attempt for a specific user
 const getQuizAttempt = function(db, quizAttemptId) {
   return db
-    .query(`SELECT question_responses.selected_option_id as choice, question_options.answer
-            FROM question_responses
-            JOIN question_options ON question_options.id = selected_option_id
-            JOIN quiz_attempts ON quiz_attempts.id = quiz_attempt_id
-            WHERE quiz_attempt_id = $1;`,
+    .query(`SELECT DISTINCT quiz_attempts.*, quizzes.title as quiz_title, quizzes.description as quiz_description, count(question_responses) as score
+            FROM quiz_attempts
+            JOIN quizzes ON quizzes.id = quiz_attempts.quiz_id
+            JOIN questions ON quizzes.id = questions.quiz_id
+            JOIN question_options ON questions.id = question_id
+            JOIN question_responses ON question_options.id = selected_option_id
+            WHERE quiz_attempts.id = $1
+            GROUP BY quiz_attempts.id, quizzes.title, quizzes.description;`,
             [quizAttemptId])
     .then((result) => {
+      console.log(result.rows[0]);
       return result.rows;
     })
     .catch((err) => {
