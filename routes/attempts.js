@@ -13,17 +13,22 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     //testing with hardcoding userId without logging in
     //remember to replace with req.session info!
-    const userId = 2;
+    const user = req.user;
 
-    getAllQuizAttempts(db, userId)
-      .then((allUserAttempts) => {
-        res.json({allUserAttempts});
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    if (req.user) {
+      getAllQuizAttempts(db, user.id)
+        .then((allUserAttempts) => {
+          res.json({allUserAttempts});
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+
+    } else {
+      res.send("Please login to see your quiz attempts");
+    }
   });
 
   router.get("/:id", (req, res) => {
