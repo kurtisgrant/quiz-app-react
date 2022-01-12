@@ -5,8 +5,8 @@
  */
 
 const express = require('express');
-const { getAllQuizAttempts, getQuizAttempt } = require('../dbQueriesHelpers');
-const router  = express.Router();
+const { getAllQuizAttempts, getQuizAttempt } = require('../lib/dbQueriesHelpers');
+const router = express.Router();
 
 //export data from quiz_responses routes to be used by server.js
 module.exports = (db) => {
@@ -18,7 +18,7 @@ module.exports = (db) => {
     if (req.user) {
       getAllQuizAttempts(db, user.id)
         .then((allUserAttempts) => {
-          res.json({allUserAttempts});
+          res.json({ allUserAttempts });
         })
         .catch(err => {
           res
@@ -34,17 +34,17 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     getQuizAttempt(db, req.params.id)
       .then((attempt) => {
-        res.json({attempt});
+        res.json({ attempt });
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
-        });
+      });
   });
 
   router.post("/", (req, res) => {
-    submitQuiz
+    submitQuiz;
   });
 
   return router;
