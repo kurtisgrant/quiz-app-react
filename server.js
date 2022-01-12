@@ -47,12 +47,14 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const quizzesRoutes = require("./routes/quizzes");
 const attemptsRoutes = require("./routes/attempts");
+const authRoutes = require("./routes/auth");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/users", usersRoutes(db));
 app.use("/quizzes", quizzesRoutes(db));
 app.use("/attempts", attemptsRoutes(db));
+app.use("/", authRoutes());
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -76,11 +78,11 @@ app.get("/", (req, res) => {
 
 // Login route for testing auth middleware
 // Route to be moved out of server.js
-app.get("/login/:id", (req, res) => {
-  console.log('logging in... param: ', req.params.id);
-  req.session.userID = req.params.id;
-  res.redirect("/");
-});
+// app.get("/login/:id", (req, res) => {
+//   console.log('logging in... param: ', req.params.id);
+//   req.session.userID = req.params.id;
+//   res.redirect("/");
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
