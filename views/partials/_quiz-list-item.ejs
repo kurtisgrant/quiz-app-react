@@ -1,0 +1,30 @@
+<li class="quiz-list-item my-5">
+  <a href="/quizzes/<%- quiz.quiz_identifier %>">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-header-title is-size-5">
+          <%- quiz.title %>
+        </h3>
+      </div>
+      <div class="card-content">
+        <p class="description">
+          <%- quiz.description %>
+        </p>
+      </div>
+      <footer class="card-footer">
+        <div class="card-footer-item">
+          <span class="mx-2">Questions: </span>
+          <span class="tag is-primary is-medium has-text-weight-semibold">
+            <%- quiz.questions %>
+          </span>
+        </div>
+        <div class="card-footer-item">
+          <span class="mx-2">Average Score: </span>
+          <span class="tag is-primary is-medium has-text-weight-semibold">
+            <%- quiz.avg_score %>
+          </span>
+        </div>
+      </footer>
+    </div>
+  </a>
+</li>
