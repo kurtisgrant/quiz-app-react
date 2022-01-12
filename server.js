@@ -2,11 +2,13 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cookieSession = require("cookie-session");
+const authMiddleware = require("./lib/auth_middleware");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -18,6 +20,13 @@ db.connect();
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan("dev"));
+
+app.use(cookieSession({
+  name: 'quiz-session',
+  secret: process.env.SESSION_SECRET
+}));
+
+app.use(authMiddleware(db));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
@@ -33,13 +42,6 @@ app.use(
 
 app.use(express.static("public"));
 
-// session
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: ['quizapp'],
-//   maxAge: 24 * 60 * 60 * 1000
-// }));
-
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
@@ -50,33 +52,25 @@ const login = require("./routes/login");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
+app.use("/api/login", login);
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-// If the user is not logged in then redirect the user to login page, else to homepage
 app.get("/", (req, res) => {
-  // const user = req.session.user_id;
-  // if (user) {
-  //   return res.redirect("/");
-  // } else {
-  //   res.render("login", {users: user});
-  // }
+
+  // Log for testing that userID & user data retrieved successfully
+  //console.log('userID from session storage: ', req.session.userID);
+  //console.log('user data from auth middleware: ', req.user);
+
   res.render("index");
 });
 
-// 
-app.get("/login", (req,res) => {
-  const user = req.session.user_id;
-  if (user) {
-    return res.redirect("/");
-  } else {
-    return res.render("login", {users: user});
-  }
-})
-
+// Login route for testing auth middleware
+// Route to be moved out of server.js
 
 
 app.listen(PORT, () => {
