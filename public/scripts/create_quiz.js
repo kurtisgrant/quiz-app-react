@@ -21,15 +21,15 @@ $(() => {
         </div>
       </div>
 
-      <div class="q-options container mr-6 has-background-blue">
+      <div class="q-options container mr-6 mt-5 has-background-blue">
 
-        <div class="q-option my-3">
-          <input class="input" type="text" placeholder="Option">
-          <button class="delete mx-3"></button>
+        <div class="q-option correct-option my-3">
+          <input class="input is-primary" type="text" placeholder="Correct Answer">
+          <button class="delete mx-3 is-invisible"></button>
         </div>
-        <div class="q-option my-3">
-          <input class="input" type="text" placeholder="Option">
-          <button class="delete mx-3"></button>
+        <div class="q-option incorrect-option my-3">
+          <input class="input is-info" type="text" placeholder="Incorrect Answer">
+          <button class="delete mx-3 is-invisible"></button>
         </div>
 
       </div>
@@ -40,8 +40,8 @@ $(() => {
   </div>
     `;
   const newOption = `
-  <div class="q-option my-3">
-    <input class="input" type="text" placeholder="Option">
+  <div class="q-option incorrect-option my-3">
+    <input class="input is-info" type="text" placeholder="Incorrect Answer">
     <button class="delete mx-3"></button>
   </div>
   `;
