@@ -46,14 +46,20 @@ $(() => {
   </div>
   `;
 
-  const $createQuizContainer = $('#create-quiz');
-  $createQuizContainer.append(titleHTML);
-  $createQuizContainer.append(newQuestion);
-  $createQuizContainer.on('click', (e) => {
-    if ($(e.target).hasClass('add-option')) {
+  const $questionsContainer = $('#questions-container');
+  $questionsContainer.append(titleHTML);
+  $questionsContainer.append(newQuestion);
+  $questionsContainer.on('click', (e) => {
+    const $target = $(e.target);
+    if ($target.hasClass('add-option')) {
       const $qOptionsContainer = $(e.target).prev();
       $qOptionsContainer.append(newOption);
-    };
+    } else if ($target.hasClass('delete')) {
+      $target.closest('div').remove();
+    }
+  });
+  $('#add-question').on('click', () => {
+    $questionsContainer.append(newQuestion);
   });
 
 
