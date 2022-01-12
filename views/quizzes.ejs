@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Quiz App</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <%- include('partials/_navbar'); %>
+    <section id="user-quizzes" class="container">
+      <h1 class="is-size-2 has-text-white has-text-weight-bold my-5">My Quizzes</h1>
+      <ul class="card-list">
+        <% for (quiz of quizzes) { %>
+          <!-- Temporarily use quiz-list-item.
+          Will eventually have _owned-quiz-list-item partial view
+          to will display number of attempts, etc. -->
+          <% quiz.questions='???' %>
+            <%- include('partials/_quiz-list-item', quiz); %>
+              <% } %>
+      </ul>
+    </section>
+</body>
+
+</html>
