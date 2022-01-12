@@ -15,9 +15,9 @@ module.exports = (db) => {
 
     if (req.user) {
       const quizzes = [
-        { id: 10, quiz_title: "Sandwiches Quiz", quiz_description: "A quiz about the best sandwiches", timestamp: "2:45pm Dec 20, 2021", score: "80%" },
-        { id: 20, quiz_title: "Pizza Quiz", quiz_description: "A quiz about the best pizzas", timestamp: "3:00 am Oct 31, 2021", score: "67%" },
-        { id: 30, quiz_title: "Burger Quiz", quiz_description: "A quiz about the best burgers", timestamp: "2:15 pm Nov 10, 2021", score: "100%" }
+        { id: 10, quiz_title: "Sandwiches Quiz", quiz_description: "A quiz about the best sandwiches", time: "2:45pm Dec 20, 2021", score: "80%" },
+        { id: 20, quiz_title: "Pizza Quiz", quiz_description: "A quiz about the best pizzas", time: "3:00 am Oct 31, 2021", score: "67%" },
+        { id: 30, quiz_title: "Burger Quiz", quiz_description: "A quiz about the best burgers", time: "2:15 pm Nov 10, 2021", score: "100%" }
       ];
 
       const templateVars = { user: user, attempts: quizzes };
