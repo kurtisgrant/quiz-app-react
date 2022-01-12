@@ -26,7 +26,8 @@ module.exports = (db) => {
   });
 
   router.get("/new", (req, res) => {
-    res.render("/new", bleh)
+    user = req.user;
+    res.render("create_quiz", {user});
   });
 
   router.get("/:quiz_identifier", (req, res) => {
