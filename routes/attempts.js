@@ -11,25 +11,40 @@ const router  = express.Router();
 //export data from quiz_responses routes to be used by server.js
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    //testing with hardcoding userId without logging in
-    //remember to replace with req.session info!
     const user = req.user;
 
     if (req.user) {
-      getAllQuizAttempts(db, user.id)
-        .then((allUserAttempts) => {
-          const templateVars = {user: req.user, attempts: allUserAttempts};
-          res.render("attempts", templateVars);
-        })
-        .catch(err => {
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
+      const quizzes = [
+        {id: 10, quiz_title: "Sandwiches Quiz", quiz_description: "A quiz about the best sandwiches", timestamp: "2:45pm Dec 20, 2021", score: "80%"},
+        {id: 20, quiz_title: "Pizza Quiz", quiz_description: "A quiz about the best pizzas", timestamp: "3:00 am Oct 31, 2021", score: "10%"},
+        {id: 30, quiz_title: "Burger Quiz", quiz_description: "A quiz about the best burgers", timestamp: "2:15 pm Nov 10, 2021", score: "100%"}
+      ]
 
+      const templateVars = { user:user, attempts: quizzes };
+      res.render("attempts", templateVars);
     } else {
-      res.send("Please login to see your quiz attempts");
+      res.send("Please login to see your quiz attempts!");
     }
+
+    //testing with hardcoding userId without logging in
+    //remember to replace with req.session info!
+    // const user = req.user;
+
+    // if (req.user) {
+    //   getAllQuizAttempts(db, user.id)
+    //     .then((allUserAttempts) => {
+    //       const templateVars = {user: req.user, attempts: allUserAttempts};
+    //       res.render("attempts", templateVars);
+    //     })
+    //     .catch(err => {
+    //       res
+    //         .status(500)
+    //         .json({ error: err.message });
+    //     });
+
+    // } else {
+    //   res.send("Please login to see your quiz attempts");
+    //}
   });
 
   router.get("/:id", (req, res) => {
