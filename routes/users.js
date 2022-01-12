@@ -6,13 +6,13 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const { getUsers, getUserWithId } = require('../lib/dbQueriesHelpers');
+const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
+    getUsers(db)
+      .then(users => {
         res.json({ users });
       })
       .catch(err => {
@@ -23,16 +23,16 @@ module.exports = (db) => {
   });
 
   router.get("/:id", (req, res) => {
-    db.query(`SELECT users.*, quizzes.* FROM users LEFT JOIN quizzes ON users.id = owner_id WHERE users.id = $1;`, [req.params.id])
-    .then(data => {
-      const user = data.rows;
-      res.json({ user });
-    })
-    .catch(err => {
-      res
-      .status(500)
-      .json({ error: err.message });
-    });
+    getUserWithId(db, req.params.id)
+      .then(data => {
+        const user = data;
+        res.json({ user });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
   return router;

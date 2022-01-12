@@ -12,17 +12,13 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/create_quiz.js"></script>
 </head>
 
 <body>
   <%- include('partials/_navbar'); %>
-    <section id="featured-quizzes" class="container">
-      <h1 class="is-size-2 has-text-white has-text-weight-bold my-5">Featured Quizzes</h1>
-      <ul class="card-list">
-        <% for (quiz of quizzes) { %>
-          <%- include('partials/_quiz-list-item', quiz); %>
-            <% } %>
-      </ul>
+    <section id="create-quiz" class="container">
+      <!-- Fields added dynamically by create_quiz.js -->
     </section>
 </body>
 

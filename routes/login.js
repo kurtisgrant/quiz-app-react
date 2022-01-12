@@ -10,7 +10,13 @@
 // router.use(authMiddleware(db));
 
 module.exports = (db) => {
-    router.get("/login/:id", (req, res) => {
+    router.get("/:id", (req, res) => {
+    console.log('logging in... param: ', req.params.id);
+    req.session.userID = req.params.id;
+    res.redirect("/");
+  });
+
+  router.get("/:id", (req, res) => {
     console.log('logging in... param: ', req.params.id);
     req.session.userID = req.params.id;
     res.redirect("/");
