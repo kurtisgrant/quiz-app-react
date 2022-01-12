@@ -1,6 +1,13 @@
 
 $(() => {
-
+  const titleHTML = `
+  <div class="field">
+    <label class="label">Title</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Quiz Title">
+    </div>
+  </div>
+  `;
   const newQuestion = `
     <div class="card q-card my-4">
       <div class="card-header">
@@ -25,26 +32,29 @@ $(() => {
           <button class="delete mx-3"></button>
         </div>
 
-        <button class="add-option button is-primary has-text-weight-bold">Add Option</button>
       </div>
+
+      <button class="add-option button is-primary has-text-weight-bold">Add Option</button>
 
     </div>
   </div>
     `;
-
-
-  const titleHTML = `
-  <div class="field">
-    <label class="label">Title</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Quiz Title">
-    </div>
+  const newOption = `
+  <div class="q-option my-3">
+    <input class="input" type="text" placeholder="Option">
+    <button class="delete mx-3"></button>
   </div>
   `;
 
   const $createQuizContainer = $('#create-quiz');
   $createQuizContainer.append(titleHTML);
   $createQuizContainer.append(newQuestion);
+  $createQuizContainer.on('click', (e) => {
+    if ($(e.target).hasClass('add-option')) {
+      const $qOptionsContainer = $(e.target).prev();
+      $qOptionsContainer.append(newOption);
+    };
+  });
 
 
 
