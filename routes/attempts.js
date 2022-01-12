@@ -18,7 +18,8 @@ module.exports = (db) => {
     if (req.user) {
       getAllQuizAttempts(db, user.id)
         .then((allUserAttempts) => {
-          res.json({allUserAttempts});
+          const templateVars = {user: req.user, attempts: allUserAttempts};
+          res.render("attempts", templateVars);
         })
         .catch(err => {
           res
@@ -32,15 +33,27 @@ module.exports = (db) => {
   });
 
   router.get("/:id", (req, res) => {
-    getQuizAttempt(db, req.params.id)
-      .then((attempt) => {
-        res.json({attempt});
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-        });
+    const user = req.user;
+
+    if (req.user) {
+      getQuizAttempt(db, req.params.id)
+        .then((attempt) => {
+          // if quiz taker is the same as the user logged in, render the specific quiz attempt, else prevent from seeing
+          if (attempt[0].tester_id === user.id) {
+            const templateVars = {user: req.user, attempts: attempt}
+            res.render("attempts", templateVars);
+          } else {
+            res.send("blank");
+          };
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+          });
+    } else {
+      res.send("Please login to see your quiz attempts");
+    }
   });
 
   router.post("/", (req, res) => {
