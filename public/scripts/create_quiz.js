@@ -1,0 +1,5 @@
+
+$(() => {
+  const $createQuizContainer = $('#create-quiz');
+
+});

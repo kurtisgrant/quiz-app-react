@@ -28,14 +28,14 @@ INSERT INTO questions (owner_id, quiz_id, question) VALUES (3, 4, 'Do you like a
 INSERT INTO questions (owner_id, quiz_id, question) VALUES (4, 5, 'Are you happy?');
 INSERT INTO questions (owner_id, quiz_id, question) VALUES (4, 5, 'Are you sure?');
 
--- sample user quiz-state
-INSERT INTO quiz_responses (tester_id, quiz_id, completed) VALUES (2, 1, TRUE);
-INSERT INTO quiz_responses (tester_id, quiz_id, completed) VALUES (2, 3, TRUE);
-INSERT INTO quiz_responses (tester_id, quiz_id, completed) VALUES (3, 2, TRUE);
-INSERT INTO quiz_responses (tester_id, quiz_id, completed) VALUES (4, 4, TRUE);
-INSERT INTO quiz_responses (tester_id, quiz_id, completed) VALUES (5, 5, TRUE);
-INSERT INTO quiz_responses (tester_id, quiz_id, completed) VALUES (1, 1, TRUE);
-INSERT INTO quiz_responses (tester_id, quiz_id, completed) VALUES (1, 5, TRUE);
+-- sample user quiz-attempts
+INSERT INTO quiz_attempts (tester_id, quiz_id, completed) VALUES (2, 1, TRUE);
+INSERT INTO quiz_attempts (tester_id, quiz_id, completed) VALUES (2, 3, TRUE);
+INSERT INTO quiz_attempts (tester_id, quiz_id, completed) VALUES (3, 2, TRUE);
+INSERT INTO quiz_attempts (tester_id, quiz_id, completed) VALUES (4, 4, TRUE);
+INSERT INTO quiz_attempts (tester_id, quiz_id, completed) VALUES (5, 5, TRUE);
+INSERT INTO quiz_attempts (tester_id, quiz_id, completed) VALUES (1, 1, TRUE);
+INSERT INTO quiz_attempts (tester_id, quiz_id, completed) VALUES (1, 5, TRUE);
 
 --sample question answer options for test quizzes
 --quiz id 1 - dogs
@@ -85,22 +85,22 @@ INSERT INTO question_options (question_id, answer, is_correct) VALUES (14, 'Yes'
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (14, 'No', FALSE);
 
 -- sample question responses from users
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (1, 1);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (1, 4);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (1, 7);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (2, 20);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (2, 22);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (2, 25);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (3, 10);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (3, 13);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (3, 16);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (4, 28);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (4, 31);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (4, 34);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (5, 37);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (5, 39);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (6, 2);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (6, 5);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (6, 8);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (7, 38);
-INSERT INTO question_responses (quiz_response_id, selected_option_id) VALUES (7, 40);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (1, 1);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (1, 4);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (1, 7);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (2, 20);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (2, 22);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (2, 25);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (3, 10);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (3, 13);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (3, 16);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (4, 28);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (4, 31);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (4, 34);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (5, 37);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (5, 39);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (6, 2);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (6, 5);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (6, 8);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (7, 38);
+INSERT INTO question_responses (quiz_attempt_id, selected_option_id) VALUES (7, 40);
