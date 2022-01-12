@@ -6,7 +6,7 @@
 
 const express = require('express');
 const { getUserQuizzes, getQuiz, addQuiz, generateQuizIdentifier } = require('../dbQueriesHelpers');
-const router  = express.Router();
+const router = express.Router();
 
 //export data from quizzes routes to be used by server.js
 module.exports = (db) => {
@@ -16,17 +16,17 @@ module.exports = (db) => {
 
     getUserQuizzes(db, userId)
       .then((quizzes) => {
-        res.json({ quizzes })
+        res.json({ quizzes });
       })
       .catch((err) => {
         res
           .status(500)
-          .json({ error: err.message} );
+          .json({ error: err.message });
       });
   });
 
   router.get("/new", (req, res) => {
-    res.render("/new", bleh)
+    res.render("create_quiz", { user: req.user });
   });
 
   router.get("/:quiz_identifier", (req, res) => {
@@ -54,7 +54,7 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
     const quizIdentifier = generateQuizIdentifier();
-    addQuiz()
+    addQuiz();
   });
 
   return router;

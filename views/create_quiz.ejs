@@ -12,13 +12,57 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
-  <script type="text/javascript" src="/scripts/create_quiz.js"></script>
+  <!-- <script type="text/javascript" src="/scripts/create_quiz.js"></script> -->
 </head>
 
 <body>
   <%- include('partials/_navbar'); %>
-    <section id="create-quiz" class="container">
+    <section id="create-quiz" class="container padded">
+      <h1 class="is-size-2 has-text-white has-text-weight-bold my-5">Create a Quiz</h1>
+
       <!-- Fields added dynamically by create_quiz.js -->
+
+      <div class="field mb-6">
+        <label class="label is-size-4 has-text-white">Quiz Title</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Title">
+        </div>
+      </div>
+
+      <div class="card q-card my-4">
+        <div class="card-header">
+          <h3 class="card-header-title">Question 1</h3>
+        </div>
+        <div class="card-content">
+
+          <div class="field q-title">
+            <div class="control">
+              <textarea name="question" class="textarea" id="q-1" rows="2" placeholder="Question"></textarea>
+            </div>
+          </div>
+
+          <div class="container mr-6 has-background-blue">
+
+            <div class="q-option my-3">
+              <input class="input" type="text" placeholder="Option 1">
+              <button class="delete mx-3"></button>
+            </div>
+            <div class="q-option my-3">
+              <input class="input" type="text" placeholder="Option 2">
+              <button class="delete mx-3"></button>
+            </div>
+            <div class="q-option my-3">
+              <input class="input" type="text" placeholder="Option 3">
+              <button class="delete mx-3"></button>
+            </div>
+            <button class="button is-primary has-text-weight-bold">Add Option</button>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="button is-info mt-5 has-text-weight-bold">Add Question</button>
+
     </section>
 </body>
 
