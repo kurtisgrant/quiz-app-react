@@ -48,6 +48,7 @@ const usersRoutes = require("./routes/users");
 const quizzesRoutes = require("./routes/quizzes");
 const attemptsRoutes = require("./routes/attempts");
 const authRoutes = require("./routes/auth");
+const { getHomepage } = require("./lib/dbQueriesHelpers");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -64,16 +65,31 @@ app.use("/", authRoutes());
 app.get("/", (req, res) => {
 
   // Log for testing that userID & user data retrieved successfully
-  console.log('userID from session storage: ', req.session.userID);
-  console.log('user data from auth middleware: ', req.user);
+  // console.log('userID from session storage: ', req.session.userID);
+  // console.log('user data from auth middleware: ', req.user);
 
-  const quizzes = [
-    { quiz_identifier: 'biK50vH', title: 'Capital Cities of North America', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi magnam sit omnis repellat, sunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '67%', questions: 25 },
-    { quiz_identifier: 'hv38vnj', title: 'Harry Potter Quiz', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Gesunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '83%', questions: 12 },
-    { quiz_identifier: 'fibajio', title: 'Parts of a Cell', description: 'Lorem ipsum dolor sit amet consectetur. Nisi magnam sit omnis repellat, sunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '72%', questions: 17 },
-  ];
+  // const quizzes = [
+  //   { quiz_identifier: 'biK50vH', title: 'Capital Cities of North America', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi magnam sit omnis repellat, sunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '67%', questions: 25 },
+  //   { quiz_identifier: 'hv38vnj', title: 'Harry Potter Quiz', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Gesunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '83%', questions: 12 },
+  //   { quiz_identifier: 'fibajio', title: 'Parts of a Cell', description: 'Lorem ipsum dolor sit amet consectetur. Nisi magnam sit omnis repellat, sunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '72%', questions: 17 },
+  // ];
+  const user = req.user;
 
-  res.render("index", { user: req.user, quizzes: quizzes });
+  if (user) {
+    getHomepage(db)
+      .then((quizzes) => {
+        const templateVars = { user, quizzes }
+        res.render("index", templateVars);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  } else {
+    res.send("Please login!");
+  };
 });
 
 // Login route for testing auth middleware
