@@ -19,22 +19,32 @@
   <%- include('partials/_navbar'); %>
     <section id="create-quiz" class="container padded">
       <h1 class="is-size-2 has-text-white has-text-weight-bold my-5">Create a Quiz</h1>
-      <div class="box">
-        <div class="field">
-          <label class="label">Title</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Quiz Title">
+      <form id="quiz-form" class="container" action="/quizzes" method="post">
+        <div class="box">
+          <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+              <input id="q-title" class="input" type="text" placeholder="Quiz Title">
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <label class="label">Description</label>
-          <div class="control">
-            <textarea class="textarea" placeholder="Quiz Description"></textarea>
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <textarea id="q-description" class="textarea" placeholder="Quiz Description"></textarea>
+            </div>
           </div>
+          <label class="checkbox">
+            <input id="q-public" checked type="checkbox">
+            Make quiz public
+          </label>
         </div>
-      </div>
-      <div id="questions-container" class="container"></div>
-      <button id="add-question" class="add-question button is-info has-text-weight-bold">Add Question</button>
+        <div id="q-questions"></div>
+
+        <button id="submit-quiz" class="submit-quiz button is-info has-text-weight-bold mt-5" type="button"
+          for="questions-form">Submit Quiz</button>
+        <button id="add-question" type="button" class="add-question button is-light mt-5 ml-3">Add
+          Question</button>
+      </form>
     </section>
 </body>
 
