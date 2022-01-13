@@ -37,8 +37,8 @@ INSERT INTO quiz_attempts (tester_id, quiz_id, completed) VALUES (5, 5, TRUE);
 INSERT INTO quiz_attempts (tester_id, quiz_id, completed) VALUES (1, 1, TRUE);
 INSERT INTO quiz_attempts (tester_id, quiz_id, completed) VALUES (1, 5, TRUE);
 
---sample question answer options for test quizzes
---quiz id 1 - dogs
+-- sample question answer options for test quizzes
+-- quiz id 1 - dogs
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (1, 'Dog1', TRUE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (1, 'Dawg1', FALSE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (1, 'Doge1', FALSE);
@@ -48,6 +48,7 @@ INSERT INTO question_options (question_id, answer, is_correct) VALUES (2, 'Doge2
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (3, 'Dog3', FALSE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (3, 'Dawg3', FALSE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (3, 'Doge3', TRUE);
+
 -- quiz id 2 - birds
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (4, 'Bird1', TRUE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (4, 'Burd1', FALSE);
@@ -58,6 +59,7 @@ INSERT INTO question_options (question_id, answer, is_correct) VALUES (5, 'Birb2
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (6, 'Bird3', FALSE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (6, 'Burd3', FALSE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (6, 'Birb3', TRUE);
+
 -- quiz id 3 - Pokemon
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (7, 'Pikachu', FALSE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (7, 'Ditto', TRUE);
@@ -68,6 +70,7 @@ INSERT INTO question_options (question_id, answer, is_correct) VALUES (8, 'Teddi
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (9, 'Gen 1', FALSE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (9, 'Gen 2', FALSE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (9, 'Gen 3', TRUE);
+
 -- quiz id 4 - adjectives
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (10, 'Jolly', TRUE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (10, 'Joy', FALSE);
@@ -78,6 +81,7 @@ INSERT INTO question_options (question_id, answer, is_correct) VALUES (11, 'Supe
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (12, 'Yes', TRUE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (12, 'No', FALSE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (12, 'Dunno', FALSE);
+
 -- quiz id 5 - happy
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (13, 'Yes', TRUE);
 INSERT INTO question_options (question_id, answer, is_correct) VALUES (13, 'No', FALSE);
