@@ -14,6 +14,7 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
 
     const user = req.user;
+    
 
     if (req.user) {
       const quizzes = [
@@ -39,19 +40,30 @@ module.exports = (db) => {
     const user = req.user;
 
     if (req.user) {
-      const questions = {
-        title: "bleh",
-        description: "BLEHBLEHBLHE aoufege fejfow",
-        questions: [
-          { question_id: 66, text: "Helloooooo?", options: [{ option_id: 90, option_text: "HI" }, { option_id: 91, option_text: "HALLO" }, { option_id: 92, option_text: "BYE!" }] },
-          { question_id: 67, text: "Byeeeee?", options: [{ option_id: 93, option_text: "HIII" }, { option_id: 94, option_text: "HALLOOOO" }, { option_id: 95, option_text: "BYEEEE!" }] },
-          { question_id: 68, text: "HB?", options: [{ option_id: 96, option_text: "H" }, { option_id: 97, option_text: "HA" }, { option_id: 98, option_text: "B!" }] }
-        ]
-      };
+      // const questions = {
+      //   title: "bleh",
+      //   owner: "Bob",
+      //   description: "BLEHBLEHBLHE aoufege fejfow",
+      //   questions: [
+      //     { question_id: 66, text: "Helloooooo?", options: [{ option_id: 90, option_text: "HI" }, { option_id: 91, option_text: "HALLO" }, { option_id: 92, option_text: "BYE!" }] },
+      //     { question_id: 67, text: "Byeeeee?", options: [{ option_id: 93, option_text: "HIII" }, { option_id: 94, option_text: "HALLOOOO" }, { option_id: 95, option_text: "BYEEEE!" }] },
+      //     { question_id: 68, text: "HB?", options: [{ option_id: 96, option_text: "H" }, { option_id: 97, option_text: "HA" }, { option_id: 98, option_text: "B!" }] }
+      //   ]
+      // };
+      const temp = "123";
 
-      const templateVars = { user, questions };
-      res.render("quiz", templateVars);
+      getQuiz(db, temp).then(function(result){
+        const title = result[0].title;
+        result = questions.reduce(function (r, a) {
+          r[a.question] = r[a.question] || [];
+          r[a.question].push(a.answer);
+          return r;
+        }, Object.create(null));
+        const templateVars = { user, result, title };
+        res.render("quiz", templateVars);
+        })
 
+       
     } else {
       res.send("Please login to complete this quiz!");
     };
