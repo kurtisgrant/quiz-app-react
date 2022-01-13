@@ -95,8 +95,12 @@ module.exports = (db) => {
   });
 
   router.post("/", (req, res) => {
+    console.log(req.body);
+    console.log(req.body.title);
+    console.log(req.body.questions[0].options);
+    const user = req.user;
     const quizIdentifier = generateQuizIdentifier();
-    addQuiz();
+    //addQuiz(db, user.id, quizIdentifier, req.body);
   });
 
   return router;
