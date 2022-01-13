@@ -76,8 +76,9 @@ module.exports = (db) => {
     if (user) {
       getQuiz(db, req.params.quiz_identifier)
         .then(quiz => {
-          if (quiz.length > 0) {
-            const templateVars = { user, quiz }
+          if (quiz) {
+            const quizIdentifier = req.params.quiz_identifier
+            const templateVars = { user, quiz, quizIdentifier }
             res.render("quiz", templateVars);
           } else {
             res.send("There is no quiz associated with this url. Please make sure you've typed in the address correctly.");
