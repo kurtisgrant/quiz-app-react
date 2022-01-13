@@ -8,7 +8,7 @@ const express = require('express');
 const { getAllQuizAttempts, getQuizAttempt } = require('../lib/dbQueriesHelpers');
 const router = express.Router();
 
-//export data from quiz_responses routes to be used by server.js
+// Export quiz attempt routes to be used by server.js
 module.exports = (db) => {
   router.get("/", (req, res) => {
     // const user = req.user;

@@ -9,7 +9,7 @@ const { reset } = require('nodemon');
 const { getUserQuizzes, getQuiz, addQuiz, generateQuizIdentifier } = require('../lib/dbQueriesHelpers');
 const router = express.Router();
 
-//export data from quizzes routes to be used by server.js
+// Export quiz routes to be used by server.js
 module.exports = (db) => {
   router.get("/", (req, res) => {
     // const user = req.user;
