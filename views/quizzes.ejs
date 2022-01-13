@@ -16,8 +16,11 @@
 
 <body>
   <%- include('partials/_navbar'); %>
-    <section id="user-quizzes" class="container">
-      <h1 class="is-size-2 has-text-white has-text-weight-bold my-5">My Quizzes</h1>
+    <section id="user-quizzes" class="container padded">
+      <div class="is-flex is-align-items-center my-5">
+        <h1 class="is-size-2 has-text-white has-text-weight-bold my-0">My Quizzes</h1>
+        <a class="button is-light is-rounded ml-5 has-text-weight-semibold" href="/quizzes/new">Create Quiz</a>
+      </div>
       <ul class="card-list">
         <% for (quiz of quizzes) { %>
           <!-- Temporarily use quiz-list-item.
