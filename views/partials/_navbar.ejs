@@ -40,15 +40,15 @@
                 <div class="buttons">
                   <% if(user) { %>
                     <form action="/logout" method="post">
-                      <button class="button is-light" type="submit">
+                      <a class="button is-light" href='/logout'>
                         Logout
-                      </button>
+                      </a>
                     </form>
                     <% } else { %>
-                      <a class="button is-primary" href="/register">
+                      <a disabled class="button is-primary" href="/">
                         <strong>Sign up</strong>
                       </a>
-                      <a class="button is-light" href='/login'>
+                      <a disabled class="button is-light" href='/'>
                         Log in
                       </a>
                       <% } %>
