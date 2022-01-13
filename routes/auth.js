@@ -9,7 +9,7 @@ module.exports = () => {
   });
   router.get("/logout", (req, res) => {
     req.session = null;
-    res.send('Logged out');
+    res.redirect('/');
   });
   return router;
 };
