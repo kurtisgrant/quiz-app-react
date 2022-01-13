@@ -95,40 +95,10 @@ $(() => {
         console.log('posted. ');
       },
       error: function(request, status, error) {
-        alert(request.responseText);
+        alert(`Error: ${request.responseText}`);
       }
     });
 
   });
 
 });
-
-
-/*
-Submit quiz format
-
-{
-  "title": "Quiz Title",
-  "description": "Quiz description",
-  "public": true,
-  "questions": [
-      {
-          "question": "What is the answer?",
-          "options": [
-              [ "First option", true ],
-              [ "Second option", false ],
-              [ "Third option", false ]
-          ]
-      },
-      {
-          "question": "What is the other answer?",
-          "options": [
-              [ "First option", true ],
-              [ "Second option", false ],
-              [ "Third option", false ]
-          ]
-      }
-  ]
-}
-
-*/
