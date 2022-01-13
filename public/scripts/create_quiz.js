@@ -1,15 +1,23 @@
 
 $(() => {
-  const titleHTML = `
-  <div class="field">
-    <label class="label">Title</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Quiz Title">
+  const aboutQuizHTML = `
+  <div class="box">
+    <div class="field">
+      <label class="label">Title</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Text input">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Description</label>
+      <div class="control">
+        <textarea class="textarea" placeholder="Quiz Description"></textarea>
+      </div>
     </div>
   </div>
   `;
   const newQuestion = `
-    <div class="card q-card my-4">
+    <div class="card q-card my-6">
       <div class="card-header">
         <h3 class="card-header-title">Question</h3>
       </div>
@@ -47,7 +55,7 @@ $(() => {
   `;
 
   const $questionsContainer = $('#questions-container');
-  $questionsContainer.append(titleHTML);
+  $questionsContainer.append(aboutQuizHTML);
   $questionsContainer.append(newQuestion);
   $questionsContainer.on('click', (e) => {
     const $target = $(e.target);
