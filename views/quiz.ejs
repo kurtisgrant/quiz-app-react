@@ -17,12 +17,11 @@
 <body>
   <%- include('partials/_navbar'); %>
     <section id="quiz" class="container">
-      <h2 class="is-size-2"><%- questions.title %></h2>
-        <ul class="card-list">
-          <% for (quiz of result) { %>
-              <%- include('partials/_question-list-item', quiz); %>
-                <% } %>
-        </ul>
+      <h2 class="is-size-2">TODO: display questions here</h2>
+      <p>For now, here's the questions data: </p>
+      <p>
+        <%- quiz %>
+      </p>
     </section>
 </body>
 
