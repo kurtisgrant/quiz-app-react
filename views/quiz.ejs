@@ -19,8 +19,8 @@
     <section id="quiz" class="container">
       <h2 class="is-size-2"><%- questions.title %></h2>
         <ul class="card-list">
-          <% for (q of questions) { %>
-              <%- include('partials/_question-list-item', q); %>
+          <% for (quiz of result) { %>
+              <%- include('partials/_question-list-item', quiz); %>
                 <% } %>
         </ul>
     </section>
