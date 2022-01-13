@@ -1,7 +1,7 @@
 
 $(() => {
   const newQuestion = `
-    <div class="card q-card my-6">
+    <div class="card q-card mt-6">
       <div class="card-header is-flex is-justify-content-space-betweeen is-align-items-center">
         <h3 class="card-header-title">Question</h3>
         <button class="delete delete-question mx-4 is-medium"></button>
@@ -22,7 +22,7 @@ $(() => {
             <button class="delete delete-option mx-3 is-invisible"></button>
           </div>
         </div>
-        <button class="add-option button is-primary has-text-weight-bold">Add Option</button>
+        <button class="add-option button">Add Option</button>
       </div>
     </div>
   `;
