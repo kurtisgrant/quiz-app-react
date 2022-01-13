@@ -19,6 +19,20 @@
   <%- include('partials/_navbar'); %>
     <section id="create-quiz" class="container padded">
       <h1 class="is-size-2 has-text-white has-text-weight-bold my-5">Create a Quiz</h1>
+      <div class="box">
+        <div class="field">
+          <label class="label">Title</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Quiz Title">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Description</label>
+          <div class="control">
+            <textarea class="textarea" placeholder="Quiz Description"></textarea>
+          </div>
+        </div>
+      </div>
       <div id="questions-container" class="container"></div>
       <button id="add-question" class="add-question button is-info has-text-weight-bold">Add Question</button>
 
