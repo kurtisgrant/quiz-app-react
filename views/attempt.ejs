@@ -12,17 +12,32 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript">
+    const share = () => {
+      const copyText = document.getElementById("share");
+      copyText.select();
+      navigator.clipboard.writeText(copyText.value);
+    }
+  </script>
 </head>
 
 <body>
   <%- include('partials/_navbar'); %>
     <section id="attempt" class="container">
-      <h2 class="is-size-2"><%- attempt.quiz_title %></h2>
-      <p>For now, here's the attempt data: </p>
+      <br>
+      <h2 class="is-size-2"><div><%- attempt.quiz_title %></div><div class="card score">&nbspScore: <%- score %> %&nbsp</div></h2>
       <p>
-        <%- attempt %>
+        <% for (question of attempt.questions) { %>
+          <%- include('partials/_attempt_questions', question) %>
+        <% } %>
+      </p>
+      <p class="share-link">
+      <input type="text" value="localhost:8080/attempts/<%- attemptId %>" id="share">
+      <button onclick="share()">Share your result!</button>
       </p>
     </section>
+    <br>
+    <br>
 </body>
 
 </html>
