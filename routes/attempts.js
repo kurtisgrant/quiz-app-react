@@ -3,10 +3,11 @@
  * Since this file is loaded in server.js into attempts,
  *   these routes are mounted onto /attempts
  */
-
 const express = require('express');
 const { getAllQuizAttempts, getQuizAttempt, submitQuiz } = require('../lib/dbQueriesHelpers');
 const router = express.Router();
+
+
 
 // Export quiz attempt routes to be used by server.js
 module.exports = (db) => {
@@ -31,6 +32,10 @@ module.exports = (db) => {
     if (user) {
       getAllQuizAttempts(db, user.id)
         .then((allUserAttempts) => {
+          for (i in allUserAttempts) {
+            const attemptTime = ((allUserAttempts[i]["time"]).toString()).slice(0, 16);
+            allUserAttempts[i]["time"] = attemptTime;
+          }
           const templateVars = { user, attempts: allUserAttempts };
           res.render("attempts", templateVars);
         })
