@@ -3,22 +3,19 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-header-title is-size-5">
-            <%- question.question %>
+            <%- question %>
           </h3>
         </div>
         <footer class="card-footer">
-          <div class="card-footer-item">
-            <span class="mx-2">Questions: </span>
-            <span class="tag is-primary is-medium has-text-weight-semibold">
-              <%- quiz.questions %>
-            </span>
-          </div>
-          <div class="card-footer-item">
-            <span class="mx-2">Average Score: </span>
-            <span class="tag is-primary is-medium has-text-weight-semibold">
-              <%- quiz.avg_score %>
-            </span>
-          </div>
+            <div class="card-footer-item">
+                <% for (question of questions) { %>
+                  <% for (option of question.options) { %>
+                    <input type="radio"><%- option.option %><br/>
+                  <% } %>
+                <% } %>  
+                </span>
+              </div>
+         
         </footer>
       </div>
     </a>

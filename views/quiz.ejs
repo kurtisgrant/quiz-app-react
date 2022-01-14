@@ -23,13 +23,8 @@
       </p>
       <ul class="card-list">
         <% for (question of quiz.questions) { %>
-          <!-- <p><%- question.question %></p> -->
-          <%- include('partials/_question-list-item', question.question); %>
-          <!-- <% for (option of question.options) { %> -->
-          <!-- <input type="radio"><%- option.option %><br/> -->
-          <input type="radio"><%- question.options %><br/>
-          <!-- <%- include('partials/_question-list-item', option.option); %> -->
-          <!-- <% } %> -->
+          <%- include('partials/_question-list-item', question); %>
+          
         <% } %>
       </ul>
     </section>
