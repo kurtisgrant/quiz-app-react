@@ -1,4 +1,4 @@
-<li class="card q-card mt-6">
+<li id="<%= question.question_id %>" class="card q-card mt-6">
   <div class="card-header">
     <h3 class="card-header-title is-size-5">
       <%= question.question %>
@@ -9,7 +9,7 @@
       <% for (option of question.options) { %>
         <li class="option">
           <label class="radio p-3">
-            <input type="radio" name="<%=  question.question_id %>">
+            <input id="<%= option.option_id%>" type="radio" class="option-radio" name="<%=  question.question_id %>">
             <span class="ml-2">
               <%= option.option %>
             </span>

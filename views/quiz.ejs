@@ -12,6 +12,7 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/submit_quiz.js"></script>
 </head>
 
 <body>
@@ -28,7 +29,7 @@
           <%- include('partials/_question-list-item', { question }) %>
             <% } %>
       </ul>
-      <button class="button is-info has-text-weight-bold mt-5">Submit</button>
+      <button id="submit-quiz" class="button is-info has-text-weight-bold mt-5">Submit</button>
     </section>
 
 </body>
