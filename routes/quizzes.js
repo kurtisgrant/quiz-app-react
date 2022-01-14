@@ -72,13 +72,21 @@ module.exports = (db) => {
     //   res.send("Please login to complete this quiz!");
     // };
     const user = req.user;
+    const arr = [];
 
     if (user) {
       getQuiz(db, req.params.quiz_identifier)
         .then(quiz => {
           if (quiz) {
             const quizIdentifier = req.params.quiz_identifier
-            const templateVars = { user, quiz, quizIdentifier }
+            const questions = quiz.questions;
+            for (question of quiz.questions) {
+              for ( option of question.options) {
+                console.log(option[0]);
+              }
+            }
+            console.log(arr);
+            const templateVars = { user, quiz, quizIdentifier, questions }
             res.render("quiz", templateVars);
           } else {
             res.send("There is no quiz associated with this url. Please make sure you've typed in the address correctly.");
