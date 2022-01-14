@@ -32,8 +32,10 @@ module.exports = (db) => {
     if (user) {
       getAllQuizAttempts(db, user.id)
         .then((allUserAttempts) => {
-          const attemptTime = ((allUserAttempts[0]["time"]).toString()).slice(0, 16);
-          allUserAttempts[0]["time"] = attemptTime;
+          for (i in allUserAttempts) {
+            const attemptTime = ((allUserAttempts[i]["time"]).toString()).slice(0, 16);
+            allUserAttempts[i]["time"] = attemptTime;
+          }
           const templateVars = {user, attempts: allUserAttempts};
           res.render("attempts", templateVars);
         })
