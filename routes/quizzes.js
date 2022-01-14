@@ -12,20 +12,7 @@ const router = express.Router();
 // Export quiz routes to be used by server.js
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    // const user = req.user;
 
-    // if (req.user) {
-    //   const quizzes = [
-    //     { quiz_identifier: 'biK50vH', title: 'How are you?', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi magnam sit omnis repellat, sunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '67%', total_attempts: 10 },
-    //     { quiz_identifier: 'hv38vnj', title: 'You are how?', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Gesunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '83%', total_attempts: 3 },
-    //     { quiz_identifier: 'fibajio', title: 'Parts of a Cell', description: 'Lorem ipsum dolor sit amet consectetur. Nisi magnam sit omnis repellat, sunt dolorum vitae quae modi, odio officiis libero cumque assumenda commodi ducimus.', avg_score: '72%', total_attempts: 1000 }
-    //   ];
-    //   const templateVars = { user, quizzes };
-
-    //   res.render("quizzes", templateVars);
-    // } else {
-    //   res.send("Please login to see your quizzes!");
-    // }
 
     const user = req.user;
 
@@ -81,7 +68,10 @@ module.exports = (db) => {
     const quiz = req.body;
     const userID = req.user.id;
     const quizIdentifier = generateQuizIdentifier();
-    addQuiz(db, userID, quizIdentifier, quiz).catch(err => console.log('ERROR', err));
+
+    addQuiz(db, userID, quizIdentifier, quiz);
+
+    res.status(200).json('I guess it worked!');
   });
 
   return router;
