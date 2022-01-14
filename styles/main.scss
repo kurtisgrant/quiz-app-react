@@ -1,6 +1,7 @@
 body {
   min-height: 100vh;
   font-size: 1em;
+  padding-bottom: 40vh;
 
   background: rgb(163, 208, 219);
   background: linear-gradient(
@@ -26,9 +27,6 @@ body {
 .card-list > li:hover {
   opacity: 0.8;
   transform: scale(99%)
-}
-#create-quiz {
-  padding-bottom: 40vh;
 }
 .q-option {
   display: flex;

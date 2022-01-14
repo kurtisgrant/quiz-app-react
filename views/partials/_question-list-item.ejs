@@ -1,23 +1,20 @@
 <li class="card q-card mt-6">
-    <a href="/quizzes/<%- quiz.quiz_identifier %>">
-      <div class="card q-card mt-6">
-        <div class="card-content">
-          <h3 class="card-header-title is-size-5">
-            <%- question %>
-          </h3>
-        </div>
-        <footer class="card-footer">
-            <div class="card-footer-item">
-                <% if (question) { %>
-                    <% for (option of question.options) { %>
-                        <input type="radio"><%- option.option %>
-                    <% } %>
-                <% } %>  
-                </span>
-              </div>
-         
-        </footer>
-      </div>
-    </a>
-  </li>
-  
+  <div class="card-header">
+    <h3 class="card-header-title is-size-5">
+      <%= question.question %>
+    </h3>
+  </div>
+  <div class="card-content">
+    <ul class="control">
+      <% for (option of question.options) { %>
+        <li>
+          <label class="radio">
+            <input type="radio" name="<%=  question.question_id %>">
+            <%= option.option %>
+          </label>
+        </li>
+        <% } %>
+    </ul>
+
+  </div>
+</li>
