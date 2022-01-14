@@ -32,7 +32,7 @@ module.exports = (db) => {
     if (user) {
       getUserQuizzes(db, user.id)
         .then((quizzes) => {
-          const templateVars = { user, quizzes }
+          const templateVars = { user, quizzes };
           res.render("quizzes", templateVars);
         })
         .catch(err => {
@@ -53,31 +53,14 @@ module.exports = (db) => {
   });
 
   router.get("/:quiz_identifier", (req, res) => {
-    // const user = req.user;
 
-    // if (req.user) {
-    //   const questions = {
-    //     title: "bleh",
-    //     description: "BLEHBLEHBLHE aoufege fejfow",
-    //     questions: [
-    //       { question_id: 66, text: "Helloooooo?", options: [{ option_id: 90, option_text: "HI" }, { option_id: 91, option_text: "HALLO" }, { option_id: 92, option_text: "BYE!" }] },
-    //       { question_id: 67, text: "Byeeeee?", options: [{ option_id: 93, option_text: "HIII" }, { option_id: 94, option_text: "HALLOOOO" }, { option_id: 95, option_text: "BYEEEE!" }] },
-    //       { question_id: 68, text: "HB?", options: [{ option_id: 96, option_text: "H" }, { option_id: 97, option_text: "HA" }, { option_id: 98, option_text: "B!" }] }
-    //     ]
-    //   };
-    //   const templateVars = { user, questions };
-    //   res.render("quiz", templateVars);
-
-    // } else {
-    //   res.send("Please login to complete this quiz!");
-    // };
     const user = req.user;
 
     if (user) {
       getQuiz(db, req.params.quiz_identifier)
         .then(quiz => {
           if (quiz.length > 0) {
-            const templateVars = { user, quiz }
+            const templateVars = { user, quiz };
             res.render("quiz", templateVars);
           } else {
             res.send("There is no quiz associated with this url. Please make sure you've typed in the address correctly.");
@@ -95,12 +78,10 @@ module.exports = (db) => {
   });
 
   router.post("/", (req, res) => {
-    console.log(req.body);
-    console.log(req.body.title);
-    console.log(req.body.questions[0].options);
-    const user = req.user;
+    const quiz = req.body;
+    const userID = req.user.id;
     const quizIdentifier = generateQuizIdentifier();
-    //addQuiz(db, user.id, quizIdentifier, req.body);
+    addQuiz(db, userID, quizIdentifier, quiz).catch(err => console.log('ERROR', err));
   });
 
   return router;
