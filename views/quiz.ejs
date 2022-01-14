@@ -12,24 +12,26 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/submit_quiz.js"></script>
 </head>
 
 <body>
   <%- include('partials/_navbar'); %>
-    <section id="quiz" class="container">
-      <h2 class="is-size-2"><%- quiz.title %></h2>
-      <p>
+    <section id="quiz" q-id="<%= quiz.id %>" class="container padded">
+      <h2 class="is-size-2 has-text-white has-text-weight-bold mt-5">
+        <%- quiz.title %>
+      </h2>
+      <p class="is-size-5 has-text-white has-text-weight-semibold mb-5">
         <%- quiz.description %>
       </p>
-      <ul class="card-list">
+      <ul class="">
         <% for (question of quiz.questions) { %>
-          <p><%- question.question %></p>
-          <% for (option of question.options) { %>
-          <input type="radio"><%- option.option %><br/>
-          <% } %>
-        <% } %>
+          <%- include('partials/_question-list-item', { question }) %>
+            <% } %>
       </ul>
+      <button id="submit-quiz" class="button is-info has-text-weight-bold mt-5">Submit</button>
     </section>
+
 </body>
 
 </html>

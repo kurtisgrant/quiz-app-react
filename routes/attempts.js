@@ -5,7 +5,7 @@
  */
 
 const express = require('express');
-const { getAllQuizAttempts, getQuizAttempt } = require('../lib/dbQueriesHelpers');
+const { getAllQuizAttempts, getQuizAttempt, submitQuiz } = require('../lib/dbQueriesHelpers');
 const router = express.Router();
 
 // Export quiz attempt routes to be used by server.js
@@ -31,7 +31,7 @@ module.exports = (db) => {
     if (user) {
       getAllQuizAttempts(db, user.id)
         .then((allUserAttempts) => {
-          const templateVars = {user, attempts: allUserAttempts};
+          const templateVars = { user, attempts: allUserAttempts };
           res.render("attempts", templateVars);
         })
         .catch(err => {
@@ -81,18 +81,29 @@ module.exports = (db) => {
         }
         const score = Math.round((total * 100 / attempt.questions.length), 0);
 
-        const templateVars = {user, attempt, attemptId, score}
+        const templateVars = { user, attempt, attemptId, score };
         res.render("attempt", templateVars);
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
-        });
+      });
   });
 
   router.post("/", (req, res) => {
-    submitQuiz;
+    const quizData = req.body;
+    const userID = req.user.id;
+
+    const data = {
+      tester_id: userID,
+      quiz_id: quizData.quiz_id,
+      selections: quizData.selections
+    };
+
+    submitQuiz(db, data);
+
+    res.status(200).json('Quiz attempt recorded!');
   });
 
   return router;
