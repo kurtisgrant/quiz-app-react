@@ -47,6 +47,7 @@ CREATE TABLE question_options (
 CREATE TABLE question_responses (
   id SERIAL PRIMARY KEY NOT NULL,
   quiz_attempt_id INTEGER REFERENCES quiz_attempts(id) ON DELETE CASCADE,
+  question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE,
   selected_option_id INTEGER REFERENCES question_options(id) ON DELETE CASCADE
 );
 

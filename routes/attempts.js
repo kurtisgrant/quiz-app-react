@@ -4,7 +4,7 @@
  *   these routes are mounted onto /attempts
  */
 const express = require('express');
-const { getAllQuizAttempts, getQuizAttempt } = require('../lib/dbQueriesHelpers');
+const { getAllQuizAttempts, getQuizAttempt, submitQuiz } = require('../lib/dbQueriesHelpers');
 const router = express.Router();
 
 
@@ -36,7 +36,7 @@ module.exports = (db) => {
             const attemptTime = ((allUserAttempts[i]["time"]).toString()).slice(0, 16);
             allUserAttempts[i]["time"] = attemptTime;
           }
-          const templateVars = {user, attempts: allUserAttempts};
+          const templateVars = { user, attempts: allUserAttempts };
           res.render("attempts", templateVars);
         })
         .catch(err => {
@@ -74,25 +74,41 @@ module.exports = (db) => {
     // }
 
     const user = req.user;
+    const attemptId = req.params.id;
 
-    if (user) {
-      getQuizAttempt(db, req.params.id)
-        .then((attempt) => {
-          const templateVars = {user, attempt}
-          res.render("attempt", templateVars);
-        })
-        .catch(err => {
-          res
-            .status(500)
-            .json({ error: err.message });
-          });
-    } else {
-      res.send("Please login to see your quiz attempts");
-    }
+    getQuizAttempt(db, req.params.id)
+      .then((attempt) => {
+        let total = 0;
+        for (const question of attempt.questions) {
+          if (question.selected_option_id === question.correct_option_id) {
+            total += 1;
+          }
+        }
+        const score = Math.round((total * 100 / attempt.questions.length), 0);
+
+        const templateVars = { user, attempt, attemptId, score };
+        res.render("attempt", templateVars);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
   router.post("/", (req, res) => {
-    submitQuiz;
+    const quizData = req.body;
+    const userID = req.user.id;
+
+    const data = {
+      tester_id: userID,
+      quiz_id: quizData.quiz_id,
+      selections: quizData.selections
+    };
+
+    submitQuiz(db, data);
+
+    res.status(200).json('Quiz attempt recorded!');
   });
 
   return router;
