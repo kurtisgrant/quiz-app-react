@@ -4,13 +4,15 @@
       <%= question.question %>
     </h3>
   </div>
-  <div class="card-content">
+  <div class="card-content p-3">
     <ul class="control">
       <% for (option of question.options) { %>
-        <li>
-          <label class="radio">
+        <li class="option">
+          <label class="radio p-3">
             <input type="radio" name="<%=  question.question_id %>">
-            <%= option.option %>
+            <span class="ml-2">
+              <%= option.option %>
+            </span>
           </label>
         </li>
         <% } %>
