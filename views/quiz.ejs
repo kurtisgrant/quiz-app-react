@@ -16,6 +16,7 @@
 
 <body>
   <%- include('partials/_navbar'); %>
+  <form method="POST" action= "/quizzes" class="container">
     <section id="quiz" class="container">
       <h2 class="is-size-2"><%- quiz.title %></h2>
       <p>
@@ -23,11 +24,15 @@
       </p>
       <ul class="card-list">
         <% for (question of quiz.questions) { %>
-          <%- include('partials/_question-list-item', question); %>
-          
+          <p><%- question.question %></p>
+          <% for (option of question.options) { %>
+          <input type="radio" name="option"><%- option.option %><br/>
+          <% } %>
         <% } %>
       </ul>
     </section>
+
+    <input required="required" type="submit" value="Submit">
 </body>
 
 </html>
