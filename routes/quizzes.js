@@ -19,6 +19,10 @@ module.exports = (db) => {
     if (user) {
       getUserQuizzes(db, user.id)
         .then((quizzes) => {
+          for (i in quizzes) {
+            const attemptTime = ((quizzes[i]["time"]).toString()).slice(0, 16);
+            quizzes[i]["time"] = attemptTime;
+          }
           const templateVars = { user, quizzes };
           res.render("quizzes", templateVars);
         })
