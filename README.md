@@ -3,7 +3,12 @@
 Quizzah is a simple quiz-making full stack web application utilizing Node, Express, jQuery, AJAX, HTML5, CSS3, and PostGreSQL that allows users to create, take, and share quizzes. Conveniently browse through the featured quizzes or take a look at the ones you've made with this easy-to-use quiz application! Review the quizzes that you've already completed and share the results with your friends and family to see if they can top your score!
 
 ## Final Product
-TO BE ADDED AT END****
+
+!["Screenshot of list of user's own quizzes"](https://github.com/Juicetin22/quiz-app/blob/readme/docs/my-quizzes.png)
+
+!["Screenshot of create-quiz page"](https://github.com/Juicetin22/quiz-app/blob/readme/docs/create-quiz.png)
+
+!["Screenshot of quiz attempt"](https://github.com/Juicetin22/quiz-app/blob/readme/docs/attempt-page.png) 
 
 ## Dependencies
 
