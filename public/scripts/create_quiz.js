@@ -57,6 +57,7 @@ $(() => {
 
   // Handle submit quiz event
   $('#submit-quiz').on('click', (e) => {
+    e.preventDefault();
     const data = {
       title: $('#q-title').val(),
       description: $('#q-description').val(),
@@ -84,7 +85,6 @@ $(() => {
       addQuestion(question);
     });
 
-    console.log('About to attempt AJAX POST req to server with body data: ', data);
     $.ajax({
       url: '/quizzes',
       dataType: 'json',
@@ -92,10 +92,11 @@ $(() => {
       async: true,
       data: data,
       success: function() {
-        console.log('posted. ');
+        console.log('Quiz submitted');
+        window.location.replace('/quizzes');
       },
       error: function(request, status, error) {
-        alert(`Error: ${request.responseText}`);
+        console.error(`Error: ${status, error, request.responseText}`);
       }
     });
 
