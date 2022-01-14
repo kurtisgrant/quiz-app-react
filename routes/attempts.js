@@ -73,13 +73,8 @@ module.exports = (db) => {
     if (user) {
       getQuizAttempt(db, req.params.id)
         .then((attempt) => {
-          // if quiz taker is the same as the user logged in, render the specific quiz attempt, else prevent from seeing
-          if (attempt[0].tester_id === user.id) {
-            const templateVars = {user, attempt}
-            res.render("attempt", templateVars);
-          } else {
-            res.send("blank");
-          };
+          const templateVars = {user, attempt}
+          res.render("attempt", templateVars);
         })
         .catch(err => {
           res
