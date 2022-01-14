@@ -4,6 +4,8 @@ $(() => {
 
   const $submit = $('#submit-quiz');
   $submit.on('click', (e) => {
+
+    console.log('HEREEEE');
     e.preventDefault();
     const selections = [];
     $questions.each((index, questionEl) => {
@@ -14,9 +16,10 @@ $(() => {
     });
 
     const data = {
-      quiz_id: q_id,
+      quiz_id: $('#quiz').attr('q-id'),
       selections: selections
     };
+
 
     $.ajax({
       url: '/attempts',
@@ -25,7 +28,7 @@ $(() => {
       async: true,
       data: data,
       success: function() {
-        console.log('Quiz submitted');
+        console.log('Ajax request successfully sent from submit_quiz.js');
         window.location.replace('/attempts');
       },
       error: function(request, status, error) {
