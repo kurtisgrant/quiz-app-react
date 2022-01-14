@@ -13,6 +13,13 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/submit_quiz.js"></script>
+  <script type="text/javascript">
+    const share = () => {
+      const copyText = document.getElementById("share");
+      copyText.select();
+      navigator.clipboard.writeText(copyText.value);
+    }
+  </script>
 </head>
 
 <body>
@@ -30,6 +37,10 @@
             <% } %>
       </ul>
       <button id="submit-quiz" class="button is-info has-text-weight-bold mt-5">Submit</button>
+      <p class="share-link">
+        <input type="text" value="localhost:8080/quizzes/<%- quizIdentifier %>" id="share">
+        <button onclick="share()">Share your result!</button>
+        </p>
     </section>
 
 </body>
