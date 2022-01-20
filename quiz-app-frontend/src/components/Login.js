@@ -1,26 +1,22 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import ajax from 'can-ajax';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const getUserByID = (id, cb) => {
-  ajax({
-    url: `http://localhost:8080/users/${id}`,
-    success: function(user) {
-      console.log('/users/:id request succeeded', user);
-      cb(user);
-    },
-    error: function(request, status, error) {
-      console.error('ajax in Login', status, error, request.responseText);
-    }
-  });
-};
+function Login({ authenticate }) {
+  const [userIdInput, setUserIdInput] = useState('');
 
-function Login({ setLoggedInUser }) {
-  const { id } = useParams();
-  useEffect(() => {
-    getUserByID(id, setLoggedInUser);
-  }, []);
-  return <div>Login: {id}</div>;
+  return <div>
+    <h1 className="is-size-2 has-text-white has-text-weight-bold m-3 my-5">Login</h1>
+    <input
+      className="input m-3"
+      placeholder="Enter user ID"
+      value={userIdInput}
+      onChange={(e) => setUserIdInput(e.target.value)}
+    />
+    <button
+      className="button m-3"
+      onClick={() => authenticate(userIdInput)}
+    >Login</button>
+  </div>;
 }
 
 export default Login;
