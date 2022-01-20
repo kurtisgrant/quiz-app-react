@@ -26,7 +26,7 @@ module.exports = (db) => {
     getUserWithId(db, req.params.id)
       .then(data => {
         const user = data;
-        res.json({ user });
+        res.json({ ...user });
       })
       .catch(err => {
         res
